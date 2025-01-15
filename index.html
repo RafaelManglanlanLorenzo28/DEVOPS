@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Resume with Sidebar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background-color: #333;
+      color: blue;
+      padding-top: 20px;
+      position: fixed;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px;
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+      border-bottom: 1px solid #444;
+    }
+
+    .sidebar a:hover {
+      background-color: #575757;
+    }
+
+    /* Main content area */
+    .main-content {
+      margin-left: 260px;
+      padding: 30px;
+      width: 100%;
+    }
+
+    .resume-container {
+      width: 100%;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .resume {
+      display: none;
+    }
+
+    .active-resume {
+      display: block;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 20px;
+    }
+
+    header img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+
+    header .header-info {
+      color: #333;
+    }
+
+    header .header-info h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    header .header-info p {
+      margin: 5px 0;
+      color: #666;
+    }
+
+    h2 {
+      color: #333;
+      font-size: 24px;
+      margin-top: 30px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 5px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .job {
+      margin-bottom: 20px;
+    }
+
+    .job h3 {
+      font-size: 20px;
+      margin: 0;
+    }
+
+    .job p {
+      margin: 5px 0;
+      color: #666;
+    }
+
+    .job ul {
+      margin-left: 20px;
+    }
+
+    .toggle-arrow {
+      cursor: pointer;
+      font-size: 24px;
+      color: #007bff;
+      display: inline-block;
+      margin-top: 20px;
+    }
+
+    .toggle-arrow:hover {
+      color: #0056b3;
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        margin-left: 0;
+      }
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+      }
+
+      .sidebar a {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+      }
+
+      .resume-container {
+        width: 90%;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="sidebar">
+    <a href="javascript:void(0);" onclick="toggleResume(1)">Rafael Lorenzo</a>
+    
+  </div>
+
+  
+  <div class="main-content">
+    <div class="resume-container">
+      
+      <div class="resume active-resume" id="resume1">
+        <header class="header">
+          <img src="rafael.jpg.jpg" alt="Profile Picture">
+          <div class="header-info">
+            <h1>Rafael Lorenzo</h1>
+            <p>Web Developer</p>
+            <p>Email: rafaellorenzo1428@example.com | Phone: 0923457689 | Location: SANTO TOMAS, SAN LUIS PAMPANGA</p>
+          </div>
+        </header>
+        <section class="section">
+          <h2>Skills</h2>
+          <ul>
+            <li>HTML, CSS, JavaScript</li>
+            <li>React, Node.js</li>
+            <li>Version Control (Git)</li>
+            <li>Responsive Web Design</li>
+            <li>UI/UX Design</li>
+          </ul>
+        </section>
+        <section class="section">
+          <h2>Experience</h2>
+          <div class="job">
+            <h3>Web Developer - XYZ Company</h3>
+            <p><strong>March 2022 - Present</strong></p>
+            <ul>
+              <li>Developed and maintained web applications using React and Node.js.</li>
+              <li>Collaborated with a cross-functional team to ensure project success.</li>
+              <li>Utilized pure coding skills to develop complex systems.</li>
+            </ul>
+          </div>
+          <div class="job">
+            <h3>Junior Web Developer - HGC Tech</h3>
+            <p><strong>June 2019 - February 2021</strong></p>
+            <ul>
+              <li>Assisted in the development of client websites using HTML, CSS, and JavaScript.</li>
+              <li>Optimized web pages for performance and SEO.</li>
+            </ul>
+          </div>
+        </section>
+        <section class="section">
+          <h2>Education</h2>
+          <p><strong>Bachelor of Science in Information Technology</strong></p>
+          <p>HOLY CROSS COLLEGE - Graduated: 2015-2019</p>
+        </section>
+        <section class="section">
+          <h2>Certifications</h2>
+          <ul>
+            <li>Certified Web Developer - Code Academy</li>
+            <li>JavaScript Mastery - FreeCodeCamp</li>
+            <li>Best in Capstone</li>
+          </ul>
+        </section>
+      </div>
+
+      
+     
+
+  <script>
+    let activeResume = 1;
+
+    function toggleResume(resumeNumber) {
+      const resumes = document.querySelectorAll('.resume');
+      resumes.forEach(resume => {
+        resume.classList.remove('active-resume');
+      });
+      document.getElementById('resume' + resumeNumber).classList.add('active-resume');
+    }
+  </script>
+</body>
+</html>
